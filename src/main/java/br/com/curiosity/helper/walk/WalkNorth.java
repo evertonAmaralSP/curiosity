@@ -1,15 +1,15 @@
-package br.com.curiosity.utils.support;
+package br.com.curiosity.helper.walk;
 
 import org.springframework.stereotype.Component;
 
 import br.com.curiosity.model.Position;
 
 @Component
-public class WalkEast implements Walk{
+public class WalkNorth implements Walk {
 
 	@Override
 	public Position process(Position position) {
-		position.setPositionY(position.getPositionY()+1);
+		position.setPositionX(position.getPositionX()+1);
 		return position;
 	}
 

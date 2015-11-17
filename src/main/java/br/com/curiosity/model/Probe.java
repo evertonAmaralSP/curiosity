@@ -12,10 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.curiosity.exception.PlateauValueOutsideException;
-import br.com.curiosity.utils.ActionProbeEnum;
-import br.com.curiosity.utils.CompassEnum;
-import br.com.curiosity.utils.builder.WalkBuilder;
-import br.com.curiosity.utils.support.Walk;
+import br.com.curiosity.helper.builder.WalkBuilder;
+import br.com.curiosity.helper.walk.Walk;
+import br.com.curiosity.utils.type.ActionProbeEnum;
+import br.com.curiosity.utils.type.CompassEnum;
 
 /**
  * 

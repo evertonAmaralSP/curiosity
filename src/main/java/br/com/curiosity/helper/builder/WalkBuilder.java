@@ -1,20 +1,16 @@
-package br.com.curiosity.utils.builder;
+package br.com.curiosity.helper.builder;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import br.com.curiosity.model.Position;
-import br.com.curiosity.utils.CompassEnum;
-import br.com.curiosity.utils.support.Walk;
+import br.com.curiosity.helper.walk.Walk;
+import br.com.curiosity.utils.type.CompassEnum;
 
 @Component
 public class WalkBuilder {
 	
 	private CompassEnum compass;
-	private Position position;
-
+	
 	@Autowired
 	private Walk walkNorth;
 	@Autowired

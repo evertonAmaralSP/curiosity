@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import br.com.curiosity.utils.builder.WalkBuilder;
+import br.com.curiosity.helper.builder.WalkBuilder;
 
 @Configuration
 @ComponentScan("br.com.curiosity")

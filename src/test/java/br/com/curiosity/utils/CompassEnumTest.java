@@ -1,9 +1,10 @@
 package br.com.curiosity.utils;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import br.com.curiosity.utils.type.CompassEnum;
 
 public class CompassEnumTest {
 

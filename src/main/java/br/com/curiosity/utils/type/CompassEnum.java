@@ -1,4 +1,4 @@
-package br.com.curiosity.utils;
+package br.com.curiosity.utils.type;
 
 public enum CompassEnum {
 	

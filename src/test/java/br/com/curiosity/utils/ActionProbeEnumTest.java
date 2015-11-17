@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import br.com.curiosity.utils.type.ActionProbeEnum;
+
 public class ActionProbeEnumTest {
 
 	@Test

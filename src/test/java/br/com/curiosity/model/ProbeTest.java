@@ -14,8 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import br.com.curiosity.config.ApplicationTest;
 import br.com.curiosity.exception.PlateauValueOutsideException;
-import br.com.curiosity.utils.ActionProbeEnum;
-import br.com.curiosity.utils.CompassEnum;
+import br.com.curiosity.utils.type.ActionProbeEnum;
+import br.com.curiosity.utils.type.CompassEnum;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ApplicationTest.class)

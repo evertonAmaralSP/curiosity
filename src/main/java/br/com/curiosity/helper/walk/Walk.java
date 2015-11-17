@@ -1,4 +1,4 @@
-package br.com.curiosity.utils.support;
+package br.com.curiosity.helper.walk;
 
 import br.com.curiosity.model.Position;
 
