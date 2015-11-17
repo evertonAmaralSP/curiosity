@@ -27,8 +27,8 @@ public class WalkBuilder {
 	private WalkBuilder(){	}
 	
 
-	@Bean(name= "walkBuilder")
-	public WalkBuilder getInstance() {
+	
+	public static WalkBuilder getInstance() {
 		return new WalkBuilder();
 	}
 
@@ -43,15 +43,16 @@ public class WalkBuilder {
 
 	public Walk Build() {
 		if (CompassEnum.N.equals(compass)) {
-			walkNorth.process(this.position);
+			return walkNorth;
 		} else if (CompassEnum.E.equals(compass)) {
-			walkEast.process(this.position);
+			return walkEast;
 		} else if (CompassEnum.S.equals(compass)) {
-			walkSouth.process(this.position);
+			return walkSouth;
 		} else if (CompassEnum.W.equals(compass)) {
-			walkWest.process(this.position);
+			return walkWest;
 		}
-		return null;
+
+        throw new IllegalArgumentException("Compass not map: " + compass);
 	}
 
 	

@@ -1,10 +1,19 @@
-package br.com.curiosity.model;
+package br.com.curiosity.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-@ComponentScan
-public class Application {
+import br.com.curiosity.utils.builder.WalkBuilder;
 
+@Configuration
+@ComponentScan("br.com.curiosity")
+public class ApplicationTest {
+
+	@Bean(name = "walkBuilder")
+	public WalkBuilder getWalkBuilder() {
+		return WalkBuilder.getInstance();
+	}
+	
+	
 }

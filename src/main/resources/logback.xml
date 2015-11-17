@@ -31,5 +31,5 @@
 	  <appender-ref ref="FILE" />
   </root>
 
-  <logger name="br.com.elo7" level="DEBUG" />
+  <logger name="br.com.curiosity" level="DEBUG" />
 </configuration>

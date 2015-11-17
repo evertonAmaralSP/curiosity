@@ -15,12 +15,12 @@ public enum ActionProbeEnum {
         return action;
     }
 
-    public static final ActionProbeEnum getEnumByDirection(final String action) {
+    public static final ActionProbeEnum getEnumByAction(final String action) {
         for (ActionProbeEnum actionProbe: ActionProbeEnum.values()) {
             if (actionProbe.getAction().equalsIgnoreCase(action)) {
                 return actionProbe;
             }
         }
-        throw new IllegalArgumentException("Not found enum for a direction: " + action);
+        throw new IllegalArgumentException("Not found enum for a action: " + action);
     }
 }
