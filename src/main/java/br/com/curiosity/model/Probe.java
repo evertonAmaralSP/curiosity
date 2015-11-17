@@ -80,7 +80,7 @@ public class Probe {
 	}
 
 	private Position move() throws PlateauValueOutsideException {
-		Walk walk = walkBuilder.position(position).direction(compass).Build();
+		Walk walk = walkBuilder.direction(compass).Build();
 
 		Position positionFinal = walk.process(position);
 		validatePositionNoExceedPlateau(positionFinal);

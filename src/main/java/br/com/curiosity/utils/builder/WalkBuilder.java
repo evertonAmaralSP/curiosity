@@ -26,18 +26,12 @@ public class WalkBuilder {
 
 	private WalkBuilder(){	}
 	
-
-	
 	public static WalkBuilder getInstance() {
 		return new WalkBuilder();
 	}
 
 	public WalkBuilder direction(CompassEnum compass) {
 		this.compass = compass;
-		return this;
-	}
-	public WalkBuilder position(Position position) {
-		this.position = position;
 		return this;
 	}
 
