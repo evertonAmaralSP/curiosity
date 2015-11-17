@@ -37,12 +37,8 @@ Eclipse curiosity
 
 Start project eclipse:
 
-    mvn eclipse:eclipse -Dwtpversion=2.0
+    mvn eclipse:eclipse
 
-Configurações
-------------------------------
-
-    Pasta raiz para exportar arquivos: curiosity.properties
 
 Contributors
 ------------
