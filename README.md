@@ -25,13 +25,6 @@ Installation
     mvn clean compile
 
 
-Running curiosity
-------------------------------
-
-Start aplicação:
-
-    mvn jetty:run
-
 Eclipse curiosity
 ------------------------------
 
