@@ -26,22 +26,20 @@ public class ProbeTest {
 
 	@Before
 	public void startPositionProbe() throws PlateauValueOutsideException {
-		Plateau plateau = new Plateau(5, 5);
-		Position startProbe = new Position(0, 1);
-		probe.config(plateau, startProbe, CompassEnum.N);
+		probe.config("0 1 N");
 	}
 	
-	@Test(expected = PlateauValueOutsideException.class)
-	public void startingPositionExceedPlateau() throws PlateauValueOutsideException {
-		Plateau plateau = new Plateau(3, 3);
-		Position startProbe = new Position(0, 4);
-		probe.config(plateau, startProbe, CompassEnum.N);
-	}
-
 	@Test
 	public void createProbe() {
 		String statusBase = statusConfig(0, 1, CompassEnum.N);
 
+		assertThat(statusBase).contains(probe.status());
+	}
+	
+	@Test
+	public void probeSimpleMoveString() throws PlateauValueOutsideException {
+		String statusBase = statusConfig(1, 1, CompassEnum.N);
+		probe.instruction("M");
 		assertThat(statusBase).contains(probe.status());
 	}
 
@@ -56,6 +54,13 @@ public class ProbeTest {
 	}
 
 	@Test
+	public void probeComplexMoveString() throws PlateauValueOutsideException {
+		String statusBase = statusConfig(1, 0, CompassEnum.W);
+		probe.instruction("MLM");
+		assertThat(statusBase).contains(probe.status());
+	}
+	
+	@Test
 	public void probeComplexMove() throws PlateauValueOutsideException {
 		String statusBase = statusConfig(1, 0, CompassEnum.W);
 
@@ -67,19 +72,29 @@ public class ProbeTest {
 		assertThat(statusBase).contains(probe.status());
 	}
 
-	@Test(expected = PlateauValueOutsideException.class)
-	public void probeMoveException() throws PlateauValueOutsideException {
-		List<ActionProbeEnum> actions = new ArrayList<>();
-		actions.add(ActionProbeEnum.M);
-		actions.add(ActionProbeEnum.L);
-		actions.add(ActionProbeEnum.M);
-		actions.add(ActionProbeEnum.M);
-		probe.instruction(actions);
-	}
-
 	private String statusConfig(int x, int y, CompassEnum compass) {
 		String statusFormat = String.format("%s %s %s", x, y, compass);
 		return statusFormat;
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConfigNegativeValues() {
+		probe.config("0 -1 N");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConfigWithLetters() {
+		probe.config("a 1 N");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConfigEmpty() {
+		probe.config("");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConfigNull() {
+		probe.config(null);
 	}
 
 }

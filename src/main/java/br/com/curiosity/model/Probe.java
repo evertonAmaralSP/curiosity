@@ -1,8 +1,11 @@
 package br.com.curiosity.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -11,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.curiosity.exception.PlateauValueOutsideException;
 import br.com.curiosity.helper.builder.WalkBuilder;
 import br.com.curiosity.helper.walk.Walk;
 import br.com.curiosity.utils.type.ActionProbeEnum;
@@ -34,20 +36,50 @@ public class Probe {
 
 	private CompassEnum compass;
 
-	private Plateau plateau;
-
 	@Autowired
 	private WalkBuilder walkBuilder;
 
-	public void instruction(List<ActionProbeEnum> actions) throws PlateauValueOutsideException {
+	private static final String REGEX_CONFIG = "^(-)?(\\d)+\\s(-)?(\\d)+\\s[NESW]$";
+
+	private static final String REGEX_MOVE = "^[LRM]+$";
+
+	private static final String REGEX_CARACTER = "(?!^)";
+
+	public void config(String config) {
+
+		notNull(config);
+		notFormatConfig(config);
+
+		String[] list = config.split("\\s");
+		int positionX = Integer.parseInt(list[0]);
+		int positionY = Integer.parseInt(list[1]);
+		compass = CompassEnum.getEnumByDirection(list[2]);
+
+		notNegativeNumber(positionX, positionY);
+		this.position = new Position(positionX, positionY);
+
+	}
+
+	public void instruction(String instructions) {
+		notNull(instructions);
+		notFormatMove(instructions);
+		String[] characters = instructions.split(REGEX_CARACTER);
+		List<ActionProbeEnum> listActions = new ArrayList<>();
+		for (String character : characters) {
+			listActions.add(ActionProbeEnum.getEnumByAction(character));
+		}
+		instruction(listActions);
+	}
+
+	public void instruction(List<ActionProbeEnum> actions) {
 		log.debug("Start instruction");
 		if (CollectionUtils.isEmpty(actions))
 			return;
 		log.debug(String.format("Size actions: %s", actions.size()));
 		for (ActionProbeEnum action : actions) {
-			log.debug(String.format("Position initial of the probe: %s",this.status()));
+			log.debug(String.format("Position initial of the probe: %s", this.status()));
 			this.process(action);
-			log.debug(String.format("Position end of the probe: %s",this.status()));
+			log.debug(String.format("Position end of the probe: %s", this.status()));
 		}
 
 	}
@@ -59,15 +91,7 @@ public class Probe {
 		return format;
 	}
 
-	public void config(Plateau plateau, Position startProbe, CompassEnum compass) throws PlateauValueOutsideException {
-		validateProbeStartPosition(plateau, startProbe);
-
-		this.plateau = plateau;
-		this.position = startProbe;
-		this.compass = compass;
-	}
-
-	public void process(ActionProbeEnum action) throws PlateauValueOutsideException {
+	public void process(ActionProbeEnum action) {
 
 		if (ActionProbeEnum.M.equals(action)) {
 			this.position = this.move();
@@ -79,28 +103,39 @@ public class Probe {
 
 	}
 
-	private Position move() throws PlateauValueOutsideException {
+	private Position move() {
 		Walk walk = walkBuilder.direction(compass).Build();
-
 		Position positionFinal = walk.process(position);
-		validatePositionNoExceedPlateau(positionFinal);
 		return positionFinal;
 	}
 
-	private void validatePositionNoExceedPlateau(Position positionFinal) throws PlateauValueOutsideException {
-		if (plateau.itNotValidateArea(positionFinal)) {
-			String msgError = String.format("Walk in that direction %s exceeds the plateau in position %s,%s.", compass,
-					position.getPositionX(), position.getPositionY());
-			log.error(msgError);
-			throw new PlateauValueOutsideException(msgError);
+	private void notFormatConfig(String config) {
+		if (!Pattern.matches(REGEX_CONFIG, config)) {
+			throw new IllegalArgumentException(String.format(
+					"The value of %s is non-standard. the expected format is \"n° n° [NWSE]\" ex .: \"3 3 N\" or \"0 1 W\"",
+					config));
 		}
 	}
 
-	private void validateProbeStartPosition(Plateau plateau, Position startProbe) throws PlateauValueOutsideException {
-		if (plateau.itNotValidateArea(startProbe)) {
-			String msgError = "The starting position exceeds the limits of the plateau.";
+	private void notFormatMove(String instruction) {
+		if (!Pattern.matches(REGEX_MOVE, instruction)) {
+			throw new IllegalArgumentException(String.format(
+					"The value of %s is non-standard. the expected format is \"[MLR]\" ex .: \"M\" or \"MMRMMRMRRM\"",
+					instruction));
+		}
+	}
+
+	private void notNull(String config) {
+		if (StringUtils.isEmpty(config)) {
+			throw new IllegalArgumentException("Value can not be null");
+		}
+	}
+
+	private void notNegativeNumber(int positionX, int positionY) {
+		if (positionX < 0 || positionY < 0) {
+			String msgError = "It is not allowed negative values.";
 			log.error(msgError);
-			throw new PlateauValueOutsideException(msgError);
+			throw new IllegalArgumentException(msgError);
 		}
 	}
 
