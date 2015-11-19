@@ -37,13 +37,13 @@ public class CuriosityService {
 		probes = new HashMap<>();
 	}
 	
-	public CuriosityService startProbe(String name, String config) {
+	public CuriosityService startConfigProbe(String name, String config) {
 		Probe probe = probeFactory.probe();
 		probe.config(config);
 		this.probes.put(name, probe); 
 		return this;
 	}
-	public CuriosityService startInstruction(String name, String instruction) {
+	public CuriosityService instructionProbe(String name, String instruction) {
 		this.probes.get(name).instruction(instruction); 
 		return this;
 	}

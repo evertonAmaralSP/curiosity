@@ -19,8 +19,8 @@ public class CuriosityServiceTest {
 	@Test
 	public void testStartCuriosityGeneric() {
 
-		curiosityService.startPlateau("5 5").startProbe("Poseidon","0 0 N").startInstruction("Poseidon","MMMR")
-				.startProbe("Atenas","5 5 S").startInstruction("Atenas","MRMML");
+		curiosityService.startPlateau("5 5").startConfigProbe("Poseidon","0 0 N").instructionProbe("Poseidon","MMMR")
+				.startConfigProbe("Atenas","5 5 S").instructionProbe("Atenas","MRMML");
 		String statusPoseidon = curiosityService.status("Poseidon");
 		String statusAtenas = curiosityService.status("Atenas");
 
