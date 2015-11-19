@@ -3,9 +3,9 @@ Pendencias:
 
  V 0
 ----------------
- * Estrutura do Projeto - wip
-   * modularizar projeto maven
+ * Estrutura do Projeto - done
  * Core Application - wip
+   * curiosityServer - wip
    * plateau - gerenciar posicao de objetos
    * probe - validar nova posicao pode ser ocupada
  
