@@ -7,15 +7,20 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import br.com.curiosity.config.BaseTest;
+import br.com.curiosity.config.ApplicationTest;
 import br.com.curiosity.exception.PlateauValueOutsideException;
 import br.com.curiosity.utils.type.ActionProbeEnum;
 import br.com.curiosity.utils.type.CompassEnum;
 
 
-public class ProbeTest extends BaseTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = ApplicationTest.class)
+public class ProbeTest {
 
 	@Autowired
 	Probe probe;

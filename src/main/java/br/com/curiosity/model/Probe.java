@@ -12,6 +12,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import br.com.curiosity.helper.builder.WalkBuilder;
@@ -28,6 +29,7 @@ import br.com.curiosity.utils.type.CompassEnum;
  *
  */
 @Component
+@Scope(value="prototype")
 public class Probe {
 
 	private Logger log = LoggerFactory.getLogger(this.getClass());

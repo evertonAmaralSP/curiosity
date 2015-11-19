@@ -1,16 +1,18 @@
 package br.com.curiosity.helper.builder;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import br.com.curiosity.helper.walk.Walk;
 import br.com.curiosity.utils.type.CompassEnum;
 
 @Component
+@Scope(value="singleton")
 public class WalkBuilder {
 	
 	private CompassEnum compass;
-	
+		
 	@Autowired
 	private Walk walkNorth;
 	@Autowired
@@ -20,12 +22,7 @@ public class WalkBuilder {
 	@Autowired
 	private Walk walkWest;
 
-	private WalkBuilder(){	}
 	
-	public static WalkBuilder getInstance() {
-		return new WalkBuilder();
-	}
-
 	public WalkBuilder direction(CompassEnum compass) {
 		this.compass = compass;
 		return this;
