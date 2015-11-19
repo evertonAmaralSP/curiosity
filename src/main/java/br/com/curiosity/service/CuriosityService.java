@@ -1,5 +1,8 @@
 package br.com.curiosity.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,43 +27,33 @@ public class CuriosityService {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private Plateau plateau;
+	
+	private Map<String, Probe> probes;
 
 	@Autowired
-	private Probe poseidon;
-
-	@Autowired
-	private Probe atenas;
-
+	private ProbeFactory probeFactory;
+	
+	public CuriosityService() {
+		probes = new HashMap<>();
+	}
+	
+	public CuriosityService startProbe(String name, String config) {
+		Probe probe = probeFactory.probe();
+		probe.config(config);
+		this.probes.put(name, probe); 
+		return this;
+	}
+	public CuriosityService startInstruction(String name, String instruction) {
+		this.probes.get(name).instruction(instruction); 
+		return this;
+	}
+	public String status(String name) {
+		return this.probes.get(name).status();
+	}
+	
 	public CuriosityService startPlateau(String position) {
 		this.plateau = new Plateau(position);
 		return this;
 	}
 
-	public CuriosityService startProbePoseidon(String config) {
-		poseidon.config(config);
-		return this;
-	}
-
-	public CuriosityService startProbeAtenas(String config) {
-		atenas.config(config);
-		return this;
-	}
-
-	public CuriosityService intructionPoseidon(String instructions) {
-		poseidon.instruction(instructions);
-		return this;
-	}
-
-	public CuriosityService intructionAtenas(String instructions) {
-		atenas.instruction(instructions);
-		return this;
-	}
-
-	public String statusPoseidon() {
-		return poseidon.status();
-	}
-
-	public String statusAtenas() {
-		return atenas.status();
-	}
 }

@@ -17,12 +17,12 @@ public class CuriosityServiceTest {
 	CuriosityService curiosityService;
 
 	@Test
-	public void testStartCuriosity() {
+	public void testStartCuriosityGeneric() {
 
-		curiosityService.startPlateau("5 5").startProbePoseidon("0 0 N").intructionPoseidon("MMMR")
-				.startProbeAtenas("5 5 S").intructionAtenas("MRMML");
-		String statusPoseidon = curiosityService.statusPoseidon();
-		String statusAtenas = curiosityService.statusAtenas();
+		curiosityService.startPlateau("5 5").startProbe("Poseidon","0 0 N").startInstruction("Poseidon","MMMR")
+				.startProbe("Atenas","5 5 S").startInstruction("Atenas","MRMML");
+		String statusPoseidon = curiosityService.status("Poseidon");
+		String statusAtenas = curiosityService.status("Atenas");
 
 		Assert.assertTrue(statusPoseidon.equals("3 0 E"));
 		Assert.assertTrue(statusAtenas.equals("4 3 S"));
