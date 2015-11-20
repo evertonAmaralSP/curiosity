@@ -1,18 +1,17 @@
 Pendencias:
 ---------------
 
- V 0
+ V 0 - DONE
 ----------------
  * Estrutura do Projeto - done
- * Core Application - wip
-   * curiosityServer - wip
-   * plateau - gerenciar posicao de objetos
-   * probe - validar nova posicao pode ser ocupada
+ * Core Application - done
  
- V 1
+ V 1 - WIP
 ----------------
- * Joysticks
- * Expor API REST
+ * Joysticks - wip
+   * consumir jar - wip
+   * integrar Api REST
+ * Expor API REST - wip
  * Integraçao Web
  * Expor Web
 
