@@ -27,7 +27,7 @@ public class WalkBuilder {
 		return this;
 	}
 
-	public Walk Build() {
+	public Walk build() {
 		if (CompassEnum.N.equals(compass)) {
 			return walkNorth;
 		} else if (CompassEnum.E.equals(compass)) {

@@ -1,6 +1,6 @@
 package br.com.curiosity.exception;
 
-import br.com.curiosity.exception.base.CuriosityException;
+import br.com.curiosity.exception.base.CuriosityRuntimeException;
 /**
  * 
  * Exception to values outside of the plateau
@@ -8,7 +8,7 @@ import br.com.curiosity.exception.base.CuriosityException;
  * @author fera
  *
  */
-public class PlateauValueOutsideException extends CuriosityException {
+public class PlateauValueOutsideException extends CuriosityRuntimeException {
 
 	private static final long serialVersionUID = -1030407088355341231L;
 	public PlateauValueOutsideException() {}

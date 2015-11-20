@@ -58,6 +58,12 @@ public class Plateau {
 		notNegativeNumber(positionX, positionY);
 		this.position = new Position(positionX, positionY);
 	}
+	
+	public String status() {
+		String format = String.format("%s %s", this.position.getPositionX(), this.position.getPositionY());
+		log.debug(String.format("Status: %s", format));
+		return format;
+	}
 
 	private void notFormat(String position) {
 		if(!Pattern.matches(REGEX_POSITION, position)){

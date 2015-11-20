@@ -1,4 +1,4 @@
-package br.com.curiosity.service;
+package br.com.curiosity.helper.factory;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

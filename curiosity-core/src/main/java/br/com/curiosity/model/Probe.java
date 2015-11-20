@@ -105,8 +105,13 @@ public class Probe {
 
 	}
 
+
+	public Position getPosition() {
+		return position;
+	}
+
 	private Position move() {
-		Walk walk = walkBuilder.direction(compass).Build();
+		Walk walk = walkBuilder.direction(compass).build();
 		Position positionFinal = walk.process(position);
 		return positionFinal;
 	}

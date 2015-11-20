@@ -8,6 +8,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import br.com.curiosity.config.ApplicationTest;
+import br.com.curiosity.exception.PlateauValueOutsideException;
+import br.com.curiosity.exception.base.CuriosityRuntimeException;
+import br.com.curiosity.utils.type.IdentifyProbeEnum;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ApplicationTest.class)
@@ -17,16 +20,69 @@ public class CuriosityServiceTest {
 	CuriosityService curiosityService;
 
 	@Test
-	public void testStartCuriosityGeneric() {
+	public void testStartCuriosity() {
 
-		curiosityService.startPlateau("5 5").startConfigProbe("Poseidon","0 0 N").instructionProbe("Poseidon","MMMR")
-				.startConfigProbe("Atenas","5 5 S").instructionProbe("Atenas","MRMML");
-		String statusPoseidon = curiosityService.status("Poseidon");
-		String statusAtenas = curiosityService.status("Atenas");
+		curiosityService.startPlateau("5 5")
+				.startConfigProbe(IdentifyProbeEnum.POSEIDON, "0 0 N")
+				.instructionProbe(IdentifyProbeEnum.POSEIDON, "MMMR")
+				.startConfigProbe(IdentifyProbeEnum.ATENAS, "5 5 S")
+				.instructionProbe(IdentifyProbeEnum.ATENAS, "MRMML")
+				.run();
+		String statusPoseidon = curiosityService
+				.status(IdentifyProbeEnum.POSEIDON);
+		String statusAtenas = curiosityService.status(IdentifyProbeEnum.ATENAS);
 
 		Assert.assertTrue(statusPoseidon.equals("3 0 E"));
 		Assert.assertTrue(statusAtenas.equals("4 3 S"));
 
+	}
+
+	@Test(expected = PlateauValueOutsideException.class)
+	public void testStartCuriosityStartingPositionExceedPlateau() {
+		curiosityService.startPlateau("5 5")
+				.startConfigProbe(IdentifyProbeEnum.POSEIDON, "6 0 N")
+				.instructionProbe(IdentifyProbeEnum.POSEIDON, "MMMR")
+				.startConfigProbe(IdentifyProbeEnum.ATENAS, "5 5 S")
+				.instructionProbe(IdentifyProbeEnum.ATENAS, "MRMML").run();
+	}
+
+	@Test(expected = PlateauValueOutsideException.class)
+	public void testStartCuriosityPositionProbeException() {
+		curiosityService.startPlateau("5 5")
+				.startConfigProbe(IdentifyProbeEnum.POSEIDON, "0 0 N")
+				.instructionProbe(IdentifyProbeEnum.POSEIDON, "MMMMMM")
+				.startConfigProbe(IdentifyProbeEnum.ATENAS, "5 5 S")
+				.instructionProbe(IdentifyProbeEnum.ATENAS, "MRMML").run();
+	}
+
+	@Test(expected = CuriosityRuntimeException.class)
+	public void testStartCuriosityWithOneProbeException() {
+		curiosityService.startPlateau("5 5")
+				.startConfigProbe(IdentifyProbeEnum.POSEIDON, "0 0 N")
+				.instructionProbe(IdentifyProbeEnum.POSEIDON, "MMMMMM").run();
+	}
+
+	@Test(expected = CuriosityRuntimeException.class)
+	public void testStartCuriosityWithOneIntructionException() {
+		curiosityService.startPlateau("5 5")
+				.startConfigProbe(IdentifyProbeEnum.POSEIDON, "0 0 N")
+				.startConfigProbe(IdentifyProbeEnum.ATENAS, "5 5 S")
+				.instructionProbe(IdentifyProbeEnum.POSEIDON, "MMMMMM").run();
+	}
+	
+	@Test(expected = CuriosityRuntimeException.class)
+	public void testStartCuriosityNoPlateauException() {
+		curiosityService
+				.startConfigProbe(IdentifyProbeEnum.POSEIDON, "0 0 N")
+				.startConfigProbe(IdentifyProbeEnum.ATENAS, "5 5 S")
+				.instructionProbe(IdentifyProbeEnum.POSEIDON, "MMMMMM").run();
+	}
+	
+	@Test(expected = CuriosityRuntimeException.class)
+	public void testStartCuriositySuperpositionException() {
+		curiosityService
+				.startConfigProbe(IdentifyProbeEnum.POSEIDON, "5 5 N")
+				.startConfigProbe(IdentifyProbeEnum.ATENAS, "5 5 S").run();
 	}
 
 }
