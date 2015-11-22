@@ -9,10 +9,10 @@ Pendencias:
  V 1 - WIP
 ----------------
  * Joysticks - wip
-   * consumir jar - wip
-   * consumir Api REST
+   * consumir jar - done
+   * consumir Api REST 
  * API REST - wip
-   * Criação
+   * Criação - wip
  * Integraçao Web
  * Expor Web
 

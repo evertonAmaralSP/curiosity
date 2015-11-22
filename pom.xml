@@ -11,6 +11,7 @@
 	<modules>
 		<module>curiosity-core</module>
 		<module>curiosity-joystick-console</module>
+		<module>curiosity-api</module>
 	</modules>
 
 	<properties>
