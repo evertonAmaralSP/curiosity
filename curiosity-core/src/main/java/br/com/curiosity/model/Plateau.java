@@ -9,6 +9,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import br.com.curiosity.exception.base.CuriosityRuntimeException;
+
 /**
  * 
  * Plateau: responsible for simulate a flexible size area and manage position of
@@ -67,20 +69,20 @@ public class Plateau {
 
 	private void notFormat(String position) {
 		if(!Pattern.matches(REGEX_POSITION, position)){
-			throw new IllegalArgumentException(String.format("The value of %s is non-standard. the expected format is \"n° n°\" ex .: \"3 3\" or \"30 3\"", position));
+			throw new CuriosityRuntimeException(String.format("The value %s is not a valid setting for the  Plateaus. the expected format is \"n° n°\" ex .: \"3 3\" or \"30 3\"", position));
 		}
 	}
 
 	private void notNull(String position) {
 		if(StringUtils.isEmpty(position)){
-			throw new IllegalArgumentException("Value can not be null");
+			throw new CuriosityRuntimeException("Value can not be null");
 		}
 	}
 	private void notNegativeNumber(int positionX, int positionY) {
 		if (positionX < 0 || positionY < 0){
 			String msgError = "It is not allowed negative values.";
 			log.error(msgError);
-			throw new IllegalArgumentException(msgError);
+			throw new CuriosityRuntimeException(msgError);
 		}
 	}
 

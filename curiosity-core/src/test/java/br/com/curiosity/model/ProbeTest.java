@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import br.com.curiosity.config.ApplicationTest;
 import br.com.curiosity.exception.PlateauValueOutsideException;
+import br.com.curiosity.exception.base.CuriosityRuntimeException;
 import br.com.curiosity.utils.type.ActionProbeEnum;
 import br.com.curiosity.utils.type.CompassEnum;
 
@@ -78,22 +79,22 @@ public class ProbeTest {
 		return statusFormat;
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected=CuriosityRuntimeException.class)
 	public void testConfigNegativeValues() {
 		probe.config("0 -1 N");
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected=CuriosityRuntimeException.class)
 	public void testConfigWithLetters() {
 		probe.config("a 1 N");
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected=CuriosityRuntimeException.class)
 	public void testConfigEmpty() {
 		probe.config("");
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected=CuriosityRuntimeException.class)
 	public void testConfigNull() {
 		probe.config(null);
 	}

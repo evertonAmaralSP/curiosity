@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import br.com.curiosity.exception.base.CuriosityRuntimeException;
 import br.com.curiosity.helper.builder.WalkBuilder;
 import br.com.curiosity.helper.walk.Walk;
 import br.com.curiosity.utils.type.ActionProbeEnum;
@@ -118,23 +119,23 @@ public class Probe {
 
 	private void notFormatConfig(String config) {
 		if (!Pattern.matches(REGEX_CONFIG, config)) {
-			throw new IllegalArgumentException(String.format(
-					"The value of %s is non-standard. the expected format is \"n° n° [NWSE]\" ex .: \"3 3 N\" or \"0 1 W\"",
+			throw new CuriosityRuntimeException(String.format(
+					"The value %s is not a valid setting for the Probe. the expected format is \"n° n° [NWSE]\" ex .: \"3 3 N\" or \"0 1 W\"",
 					config));
 		}
 	}
 
 	private void notFormatMove(String instruction) {
 		if (!Pattern.matches(REGEX_MOVE, instruction)) {
-			throw new IllegalArgumentException(String.format(
-					"The value of %s is non-standard. the expected format is \"[MLR]\" ex .: \"M\" or \"MMRMMRMRRM\"",
+			throw new CuriosityRuntimeException(String.format(
+					"The value %s is not a valid setting for the intructions. the expected format is \"[MLR]\" ex .: \"M\" or \"MMRMMRMRRM\"",
 					instruction));
 		}
 	}
 
 	private void notNull(String config) {
 		if (StringUtils.isEmpty(config)) {
-			throw new IllegalArgumentException("Value can not be null");
+			throw new CuriosityRuntimeException("Value can not be null");
 		}
 	}
 
@@ -142,7 +143,7 @@ public class Probe {
 		if (positionX < 0 || positionY < 0) {
 			String msgError = "It is not allowed negative values.";
 			log.error(msgError);
-			throw new IllegalArgumentException(msgError);
+			throw new CuriosityRuntimeException(msgError);
 		}
 	}
 

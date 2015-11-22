@@ -12,7 +12,7 @@
 		<module>curiosity-core</module>
 		<module>curiosity-joystick-console</module>
 	</modules>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java-version>1.8</java-version>
@@ -79,6 +79,13 @@
 				<artifactId>assertj-core</artifactId>
 				<version>3.2.0</version>
 				<scope>test</scope>
+			</dependency>
+
+
+			<dependency>
+				<groupId>br.com.curiosity</groupId>
+				<artifactId>curiosity-core</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

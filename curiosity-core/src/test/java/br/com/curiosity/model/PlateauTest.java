@@ -1,14 +1,16 @@
 package br.com.curiosity.model;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import br.com.curiosity.exception.base.CuriosityRuntimeException;
+
 public class PlateauTest {
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected=CuriosityRuntimeException.class)
 	public void testNegativeValues() {
 		new Plateau(-1, -1);
 	}
@@ -35,22 +37,22 @@ public class PlateauTest {
 		assertNotNull(plateau);
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected=CuriosityRuntimeException.class)
 	public void testConstrutorStringtNegativeValues() {
 		new Plateau("-2 2");
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected=CuriosityRuntimeException.class)
 	public void testConstrutorStringtWithLetters() {
 		new Plateau("a 2");
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected=CuriosityRuntimeException.class)
 	public void testConstrutorStringtEmpty() {
 		new Plateau("");
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected=CuriosityRuntimeException.class)
 	public void testConstrutorStringtNull() {
 		new Plateau(null);
 	}

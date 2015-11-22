@@ -108,7 +108,7 @@ public class CuriosityService {
 		for (Map.Entry<String, Probe> probe : probes.entrySet()) {
 			if (plateau.itNotValidateArea(probe.getValue().getPosition())) {
 				String msgError = String
-						.format("The starting position %s: %s exceeds the limits of the plateau: %s .",
+						.format("The starting position %s: %s exceeds the limits of the plateau: %s.",
 								probe.getKey(), probe.getValue().status(),
 								plateau.status());
 				log.error(msgError);
