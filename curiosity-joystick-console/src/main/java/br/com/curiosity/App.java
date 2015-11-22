@@ -29,13 +29,13 @@ public final class App {
 		System.out.println("Enter the plateau size: ex.: \"5 5\"");
 		sizePlateaus = scan.nextLine();
 		System.out.println("Enter the probe position: ex.: \"0 0 N\"");
-		positionProbe1 = scan.nextLine().toUpperCase();
+		positionProbe1 = scan.nextLine();
 		System.out.println("Enter the probe instructions: ex.: \"MMRML\"");
-		intructionProbe1 = scan.nextLine().toUpperCase();
+		intructionProbe1 = scan.nextLine();
 		System.out.println("Enter the probe position: ex.: \"0 0 N\"");
-		positionProbe2 = scan.nextLine().toUpperCase();
+		positionProbe2 = scan.nextLine();
 		System.out.println("Enter the probe instructions: ex.: \"MMRML\"");
-		intructionProbe2 = scan.nextLine().toUpperCase();
+		intructionProbe2 = scan.nextLine();
 		
 	}
 	

@@ -65,6 +65,7 @@ public class Probe {
 
 	public void instruction(String instructions) {
 		notNull(instructions);
+		instructions = instructions.toUpperCase();
 		notFormatMove(instructions);
 		String[] characters = instructions.split(REGEX_CARACTER);
 		List<ActionProbeEnum> listActions = new ArrayList<>();

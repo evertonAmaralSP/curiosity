@@ -51,6 +51,7 @@ public class Plateau {
 	
 	public Plateau(String position) {
 		notNull(position);
+		position = position.toUpperCase();
 		notFormat(position);
 		
 		String[] list = position.split("\\s");
