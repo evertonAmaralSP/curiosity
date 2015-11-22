@@ -10,11 +10,10 @@ Pendencias:
 ----------------
  * Joysticks - wip
    * consumir jar - done
-   * consumir Api REST 
- * API REST - wip
-   * Criação - wip
- * Integraçao Web
- * Expor Web
+   * consumir Api REST - wip  
+ * API REST - done
+   * Criação - done
+ * Expor Web - wip
 
  V 2 Plus
 ----------------
