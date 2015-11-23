@@ -51,6 +51,7 @@ public class Probe {
 	public void config(String config) {
 
 		notNull(config);
+		config = config.toUpperCase();
 		notFormatConfig(config);
 
 		String[] list = config.split("\\s");
