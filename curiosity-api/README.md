@@ -1,7 +1,7 @@
-Curiosity Joytick Console
+Curiosity API
 ===========
 
-Para navegar foi criado um jar que excuta os comandos basicos para operar as sondas.
+Para disponibilizar em um ambiente remoto criei um servico rest que excuta os comandos basicos para operar as sondas.
 
 
 Requirements
