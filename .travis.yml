@@ -1,5 +1,4 @@
-language:
-  java
+language: java
 
 before_script:
   - pip install --user codecov
