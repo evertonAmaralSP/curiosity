@@ -35,13 +35,13 @@
 		<dependency>
 			<groupId>org.powermock</groupId>
 			<artifactId>powermock-api-mockito</artifactId>
-			<version>1.6.0</version>
+			<version>1.6.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.powermock</groupId>
 			<artifactId>powermock-module-junit4</artifactId>
-			<version>1.6.0</version>
+			<version>1.6.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -59,22 +59,11 @@
 
 	</dependencies>
 	<build>
+		<finalName>curiosity-api</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.1.3.v20140225</version>
-				<configuration>
-					<scanIntervalSeconds>10</scanIntervalSeconds>
-					<webApp>
-						<contextPath>/</contextPath>
-						<tempDirectory>${basedir}/target/tmp</tempDirectory>
-					</webApp>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
