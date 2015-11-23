@@ -81,12 +81,8 @@
 			<url>http://repo.spring.io/milestone</url>
 		</repository>
 		<repository>
-			<id>localrepository</id>
-			<url>file://${user.home}/.m2/repository</url>
-		</repository>
-		<repository>
 	        <id>curiosyty-mvn-repo</id>
-	        <url>https://github.com/evertonAmaralSP/curiosity/raw/mvn-repo/</url>
+	        <url>https://github.com/evertonAmaralSP/curiosity/raw/mvn-repo</url>
 	        <snapshots>
 	            <enabled>true</enabled>
 	            <updatePolicy>always</updatePolicy>
