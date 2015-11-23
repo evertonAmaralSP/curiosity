@@ -14,7 +14,7 @@ Requirements
 Installation
 --------------
 	 # Baixando jar
-    donwload: https://github.com/evertonAmaralSP/curiosity/raw/master/curiosity-api/download/curiosity-api.jar
+    wget https://github.com/evertonAmaralSP/curiosity/raw/master/curiosity-api/download/curiosity-api.jar
     java -jar curiosity-api.jar
     # console
     git clone https://github.com/evertonAmaralSP/curiosity

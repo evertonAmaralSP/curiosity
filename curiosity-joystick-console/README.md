@@ -15,7 +15,7 @@ Installation
 --------------
 
     # Baixando jar
-    donwload: https://github.com/evertonAmaralSP/curiosity/raw/master/curiosity-joystick-console/download/curiosity-joytick-console.jar
+    wget https://github.com/evertonAmaralSP/curiosity/raw/master/curiosity-joystick-console/download/curiosity-joytick-console.jar
     java -jar curiosity-joyick-console.jar
     # or
     git clone https://github.com/evertonAmaralSP/curiosity
