@@ -1,5 +1,9 @@
 package br.com.curiosity.utils.type;
 
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang3.StringUtils;
+
 public enum CompassEnum {
 	
 	N("N", "W", "E"),
@@ -31,12 +35,15 @@ public enum CompassEnum {
     }
 
     public static final CompassEnum getEnumByDirection(final String direction) {
+    	if (StringUtils.isEmpty(direction) || !Pattern.matches("^[NESW]?$", direction))
+    		throw new IllegalArgumentException("Not found enum for a direction: " + direction);
+    	
         for (CompassEnum compass : CompassEnum.values()) {
             if (compass.getDirection().equalsIgnoreCase(direction)) {
                 return compass;
             }
         }
-        throw new IllegalArgumentException("Not found enum for a direction: " + direction);
+        return null;
     }
 	
 }

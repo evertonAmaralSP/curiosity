@@ -1,7 +1,6 @@
 package br.com.curiosity.utils;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -18,6 +17,11 @@ public class ActionProbeEnumTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void testSetDirectionNotValide(){
 		ActionProbeEnum.getEnumByAction("B");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSetDirectionNotValide2(){
+		ActionProbeEnum.getEnumByAction("MM");
 	}
 
 }

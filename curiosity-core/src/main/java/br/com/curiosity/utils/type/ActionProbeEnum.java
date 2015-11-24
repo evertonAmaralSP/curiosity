@@ -1,5 +1,9 @@
 package br.com.curiosity.utils.type;
 
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang3.StringUtils;
+
 
 public enum ActionProbeEnum {
 	
@@ -16,11 +20,14 @@ public enum ActionProbeEnum {
     }
 
     public static final ActionProbeEnum getEnumByAction(final String action) {
+    	if (StringUtils.isEmpty(action) || !Pattern.matches("^[LRM]?$", action))
+    		throw new IllegalArgumentException("Not found enum for a action: " + action);
+    	
         for (ActionProbeEnum actionProbe: ActionProbeEnum.values()) {
             if (actionProbe.getAction().equalsIgnoreCase(action)) {
                 return actionProbe;
             }
         }
-        throw new IllegalArgumentException("Not found enum for a action: " + action);
+        return null;
     }
 }
