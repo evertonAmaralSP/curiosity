@@ -7,23 +7,22 @@ import br.com.curiosity.model.Position;
 import br.com.curiosity.utils.type.CompassEnum;
 
 @Component
-public class WalkEast implements Walk{
+public class WalkCompass implements Walk {
 
 	@Autowired
-	private Walk walkSouth;
-	
+	private Walk walkNorth;
+
 	@Override
 	public Walk processResponsabilit(CompassEnum compass){
-		if (CompassEnum.E.equals(compass)) {
+		if (CompassEnum.N.equals(compass)) {
 			return this;
 		} else {
-			return walkSouth.processResponsabilit(compass);
+			return walkNorth.processResponsabilit(compass);
 		}
 	}
-	
 	@Override
 	public Position process(Position position) {
-		position.setPositionY(position.getPositionY()+1);
+		position.setPositionX(position.getPositionX()+1);
 		return position;
 	}
 

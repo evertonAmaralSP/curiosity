@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import br.com.curiosity.exception.base.CuriosityRuntimeException;
-import br.com.curiosity.helper.builder.WalkBuilder;
 import br.com.curiosity.helper.walk.Walk;
 import br.com.curiosity.utils.type.ActionProbeEnum;
 import br.com.curiosity.utils.type.CompassEnum;
@@ -40,7 +39,7 @@ public class Probe {
 	private CompassEnum compass;
 
 	@Autowired
-	private WalkBuilder walkBuilder;
+	private Walk walkCompass;
 
 	private static final String REGEX_CONFIG = "^(-)?(\\d)+\\s(-)?(\\d)+\\s[NESW]$";
 
@@ -114,7 +113,7 @@ public class Probe {
 	}
 
 	private Position move() {
-		Walk walk = walkBuilder.direction(compass).build();
+		Walk walk = walkCompass.processResponsabilit(compass);
 		Position positionFinal = walk.process(position);
 		return positionFinal;
 	}
@@ -163,9 +162,5 @@ public class Probe {
 	@Override
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
-	}
-
-	public void setWalkBuilder(WalkBuilder walkBuilder) {
-		this.walkBuilder = walkBuilder;
 	}
 }
