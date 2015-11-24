@@ -13,11 +13,11 @@ public class WalkEast implements Walk{
 	private Walk walkSouth;
 	
 	@Override
-	public Walk processResponsabilit(CompassEnum compass){
+	public Walk processResponsability(CompassEnum compass){
 		if (CompassEnum.E.equals(compass)) {
 			return this;
 		} else {
-			return walkSouth.processResponsabilit(compass);
+			return walkSouth.processResponsability(compass);
 		}
 	}
 	

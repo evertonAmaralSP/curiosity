@@ -113,7 +113,7 @@ public class Probe {
 	}
 
 	private Position move() {
-		Walk walk = walkCompass.processResponsabilit(compass);
+		Walk walk = walkCompass.processResponsability(compass);
 		Position positionFinal = walk.process(position);
 		return positionFinal;
 	}

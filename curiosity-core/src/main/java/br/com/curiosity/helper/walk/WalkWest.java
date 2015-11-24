@@ -9,7 +9,7 @@ import br.com.curiosity.utils.type.CompassEnum;
 public class WalkWest implements Walk {
 
 	@Override
-	public Walk processResponsabilit(CompassEnum compass){
+	public Walk processResponsability(CompassEnum compass){
 		if (CompassEnum.W.equals(compass)) {
 			return this;
 		} else {

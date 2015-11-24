@@ -7,5 +7,5 @@ public interface Walk {
 
 	public Position process(Position position);
 
-	public Walk processResponsabilit(CompassEnum compass);
+	public Walk processResponsability(CompassEnum compass);
 }
